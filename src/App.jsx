@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-// import SignupPage from "./pages/SignupPage/SignupPage";
+
 import LoginPage from "./pages/LoginPage/LoginPage";
 
 function App() {
@@ -8,8 +8,6 @@ function App() {
     <Routes>
       <Route path="/" element={<h1>Home Pageeeeeeeeeee</h1>} />
       <Route path="/login" element={<LoginPage />} />
-
-      {/* <Route path="/signup" element={<SignupPage />} /> */}
     </Routes>
   );
 }
