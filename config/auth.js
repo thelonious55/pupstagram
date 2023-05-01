@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
-export default function (req, res, next) {
+module.exports = function (req, res, next) {
   // Check for the token being sent in three different ways
   let token = req.get("Authorization") || req.query.token || req.body.token;
   if (token) {
@@ -20,4 +20,4 @@ export default function (req, res, next) {
   } else {
     next();
   }
-}
+};
