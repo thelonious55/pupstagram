@@ -10,10 +10,11 @@ import {
 	Segment,
   } from "semantic-ui-react";
 
-
+// this hook allows us to navigate programatically
+import { useNavigate } from 'react-router-dom'
 import userService from "../../utils/userService";
 
-export default function SignUpPage() {
+export default function SignUpPage({handleSignUpOrLogin}) {
 
   const [error, setError] = useState('')
 
@@ -26,6 +27,9 @@ export default function SignUpPage() {
   });
 
   const [photo, setPhoto] = useState({})
+
+  // initialize the navigate hook from react-router-dom
+  const navigate = useNavigate()
 
   function handleChange(e) {
     setState({
@@ -65,6 +69,12 @@ export default function SignUpPage() {
     // 2. Remove the headers on the fetch request (the browser) (in utils/signup)
     // will automatically apply the correct multipart/formdata header
       await userService.signup(formData); // userService is imported at top of file
+      handleSignUpOrLogin();// this is destructred in the props
+      // and it grabs the token from localstorage and sets the 
+      // new user in state!
+
+      // Change the view to the home page!
+      navigate('/');// navigate acceps a path defined by a route!
 
     } catch(err){
       console.log(err.message, " <- this comes from tht throw in utils/signup")
