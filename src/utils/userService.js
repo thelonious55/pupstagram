@@ -5,17 +5,20 @@ const BASE_URL = '/api/users/';
 function signup(user) {
   return fetch(BASE_URL + 'signup', {
     method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json'}),  // If you are sending a file/photo over
+     // If you are sending a file/photo over
     // what do datatype do you need to change this too?
-    body: JSON.stringify(user)
+    body: user // user is the formData from signupPage, 
+    // since we are sending a photo/formData no need to jsonify it
   })
   .then(res => {
+    // This function occurs when we get a response from the 
+    // express server
     if (res.ok) return res.json();
     // Probably a duplicate email
     throw new Error('Email already taken!');
   })
   // Parameter destructuring!
-  .then(({token}) => tokenService.setToken(token));
+  .then(({token}) => tokenService.setToken(token)); // this is setting the token in localStorage
   // The above could have been written as
   //.then((token) => token.token);
 }

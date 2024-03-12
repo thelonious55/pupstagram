@@ -13,6 +13,9 @@ const app = express();
 // add in when the app is ready to be deployed
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger("dev"));
+
+// THis line is how servers process
+// json
 app.use(express.json());
 
 
