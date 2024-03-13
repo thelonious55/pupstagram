@@ -35,6 +35,12 @@ function create(req, res) {
         user: req.user,
         photoUrl: data.Location, // < this is from aws
       });
+
+      // Populate the user information
+      // no need call exec because you are populating
+      // on a document
+      await post.populate('user')
+
       // respond to the client!
       // 201 means resource created!
         // then respond to the client (completing a request, by making response to the client(browser))
