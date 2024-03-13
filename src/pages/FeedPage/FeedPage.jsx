@@ -35,7 +35,8 @@ export default function FeedPage() {
 		})
 
 		const data = await response.json();
-		console.log(data, ' response from post request!')
+		//       res.status(201).json({ post }); this value is from express/posts/create controller
+		console.log(data, ' response from post request! This from express')
 
 	} catch(err){
 		console.log(err.message)
