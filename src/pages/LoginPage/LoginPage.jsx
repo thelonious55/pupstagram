@@ -1,59 +1,54 @@
 import React from "react";
 import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import {useState} from 'react'
+import { useState } from "react";
 
-import { Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 
 import {
-	Button,
-	Form,
-	Grid,
-	Header,
-	Image,
-	Message,
-	Segment,
-  } from "semantic-ui-react";
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment,
+} from "semantic-ui-react";
 
 import userService from "../../utils/userService";
 
-export default function LoginPage({handleSignUpOrLogin}) {
-   
+export default function LoginPage({ handleSignUpOrLogin }) {
   const [state, setState] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
 
-  const [error, setError] = useState('')
+  const [error, setError] = useState("");
 
   // this function takes a path defined in App.js for our routes
   const navigate = useNavigate();
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
 
     try {
       // We always pass in an OBJECT as the data we want to send to the server
-      await userService.login(state)// making the http request to the server
+      await userService.login(state); // making the http request to the server
 
-  
-
-      navigate('/')
-      handleSignUpOrLogin(); // this comes from app.js as a prop, which it gets the token from localstorage and stores the decoded 
+      navigate("/");
+      handleSignUpOrLogin(); // this comes from app.js as a prop, which it gets the token from localstorage and stores the decoded
       // token in the app.js state
-
-    } catch(err){
-      console.log(err)
-      setError('check terminal and console')
+    } catch (err) {
+      console.log(err);
+      setError("check terminal and console");
     }
-
   }
 
-  function handleChange(e){
+  function handleChange(e) {
     setState({
       ...state,
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   }
 
   return (
