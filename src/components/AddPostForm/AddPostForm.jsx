@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button, Form, Segment } from 'semantic-ui-react'
 
 
-export default function AddPostForm(){
+export default function AddPostForm({handleAddPost}){
     
     const [state, setState] = useState({
         caption: ''
@@ -21,8 +21,12 @@ export default function AddPostForm(){
         })
     }
 
-    function handleSubmit(){
-        
+    function handleSubmit(e){
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append('caption', state.caption)
+        formData.append('photo', photo)
+        handleAddPost(formData)
     }
 
     return (
