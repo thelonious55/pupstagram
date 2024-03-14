@@ -1,7 +1,7 @@
 
 # Implementing a user story
 
-- **USER STORY** A user fills out and submits the puppy form in order to create a puppy
+- **USER STORY** A user fills out  and submits the puppy form in order to create a puppy
 
 ### Thought process 
 
@@ -14,8 +14,8 @@
 		  	* **Where do I want to define the fetch request (what component)?** In the feedpage, because that is where the posts state is. 
 
    2.  **After The Response from the server, what do I want to update to reflect that action.?**
-		* **Do I need to update the state?** In this case update the posts state
-		* **What props need to passed or what props are changing when you update state?** In this case posts must be sent as a prop to the `PostFeed` component then the `PostCard` component
+		* **Do I need to update the state?** In this case, update the posts state
+		* **What props need to passed or what props are changing when you update state?** In this case, posts must be sent down as a prop to the `PostFeed` component then the `PostCard` component
 		   
 <hr/>
 
@@ -44,7 +44,7 @@
    
    1.  **What is my http request?**
        1. Please answer this question
-	     	* **When do I want to make the request (what component when called)?** When the user clicks submit on the form in the AddPuppyForm component.
+	     	* **When do I want to make the request (what component when called)?** When the user clicks submit on the form, in the AddPuppyForm component.
 
 		  	* **Where do I want to define the fetch request (what component)?** In the feedpage, because that is where the posts state is.   
 				* **User thinking** When the user goes to feed page 
