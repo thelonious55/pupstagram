@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import PostFeed from "../../components/PostFeed/PostFeed";
 import Header from "../../components/Header/Header";
@@ -45,6 +45,37 @@ export default function FeedPage() {
 
   }
 
+  useEffect(() => {
+    // This useEffect is called when the page loads
+
+    // Don't forget to call the function
+    getPosts();
+  }, []);
+
+  // C(R)UD
+  async function getPosts() {
+    try {
+      const response = await fetch("/api/posts", {
+        method: "GET",
+        headers: {
+          // convention for sending jwts in a fetch request
+          Authorization: "Bearer " + tokenService.getToken(),
+          // We send the token, so the server knows who is making the
+          // request
+        },
+      });
+
+      const data = await response.json();
+      // AFTER THIS WE HAVE THE DATA BACK FROM SERVER
+      // CHECK THE DATA then update state!
+      console.log(data);
+      setPosts(data.posts);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+
   return (
     <Grid centered>
       <Grid.Row>
@@ -59,7 +90,7 @@ export default function FeedPage() {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <PostFeed />
+          <PostFeed  posts={posts} />
         </Grid.Column>
       </Grid.Row>
     </Grid>

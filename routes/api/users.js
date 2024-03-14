@@ -10,6 +10,10 @@ const upload = multer();
 router.post("/signup", upload.single('photo'),  usersCtrl.signup);
 router.post("/login", usersCtrl.login);
 
+// /api/users/jim <-- This must be what the request looks like from the client to hit this route
+// /api/users/ted
+// /api/users/kate
+router.get('/:username', usersCtrl.profile);
 /*---------- Protected Routes ----------*/
 
 module.exports = router;
