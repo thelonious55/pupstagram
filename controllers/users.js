@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
+const PostModel = require('../models/post')
 
 const { v4: uuidv4 } = require('uuid');
 // uuid, helps generate our unique ids
@@ -26,7 +27,7 @@ async function profile(req, res){
     if (!user) return  res.status(404).json({error: 'User not found'})
 
     // Find all of the posts for user and respond to the client
-    const posts = await Post.find({user: user._id}).populate('user').exec()
+    const posts = await PostModel.find({user: user._id}).populate('user').exec()
 
     res.status(200).json({data: posts, user: user})
   } catch(err){
