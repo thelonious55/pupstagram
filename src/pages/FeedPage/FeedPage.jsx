@@ -11,7 +11,7 @@ import tokenService from '../../utils/tokenService';
 export default function FeedPage() {
 
   const [posts, setPosts] = useState([]); // this will be an array of objects!	
-
+  const [loading, setLoading] = useState(true)
   // Wherever you store your state, 
   // this is where we will define the api calls, 
   // because when they finish we need to update state
@@ -55,6 +55,10 @@ export default function FeedPage() {
   // C(R)UD
   async function getPosts() {
     try {
+
+		// This is going to express to get the posts
+		// so this is the start of loading
+	  setLoading(true)
       const response = await fetch("/api/posts", {
         method: "GET",
         headers: {
@@ -68,6 +72,7 @@ export default function FeedPage() {
       const data = await response.json();
       // AFTER THIS WE HAVE THE DATA BACK FROM SERVER
       // CHECK THE DATA then update state!
+	  setLoading(false)
       console.log(data);
       setPosts(data.posts);
     } catch (err) {
@@ -90,7 +95,7 @@ export default function FeedPage() {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <PostFeed  posts={posts} />
+         {loading ? <h1>Loading.....</h1> : <PostFeed  posts={posts} /> } 
         </Grid.Column>
       </Grid.Row>
     </Grid>
