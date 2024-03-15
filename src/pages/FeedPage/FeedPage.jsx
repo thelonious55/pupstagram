@@ -8,7 +8,7 @@ import { Grid } from "semantic-ui-react";
 
 import tokenService from '../../utils/tokenService';
 
-export default function FeedPage() {
+export default function FeedPage({loggedUser, handleLogout}) {
 
   const [posts, setPosts] = useState([]); // this will be an array of objects!	
   const [loading, setLoading] = useState(true)
@@ -85,7 +85,7 @@ export default function FeedPage() {
     <Grid centered>
       <Grid.Row>
         <Grid.Column>
-          <Header />
+        <Header loggedUser={loggedUser} handleLogout={handleLogout}/>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
@@ -95,7 +95,7 @@ export default function FeedPage() {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-         {loading ? <h1>Loading.....</h1> : <PostFeed  posts={posts} /> } 
+         {loading ? <h1>Loading.....</h1> : <PostFeed  posts={posts} itemsPerRow={1} isProfile={false}/> } 
         </Grid.Column>
       </Grid.Row>
     </Grid>

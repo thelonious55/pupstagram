@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useState } from 'react'
 import "./App.css";
 
@@ -20,12 +20,35 @@ function App() {
     // in order to get the token sent back from express and store the decoded token in the state
     setUser(userService.getUser())
   }
+
+  function logout() {
+    console.log("happening");
+    userService.logout();
+    setUser(null);
+  }
+
+  if (!user) {
+    return (
+      <Routes>
+        <Route
+          path="/login"
+          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    );
+  }
+  
   return (
     <Routes>
-      <Route path="/" element={<FeedPage />} />
-      <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      <Route path='/signup' element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      <Route path="/:username" element={<ProfilePage />} />
+      <Route path="/" element={<FeedPage loggedUser={user} handleLogout={logout} />} />
+      <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
+      <Route path='/signup' element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
+      <Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={logout}/>} />
     </Routes>
   );
 }
