@@ -89,9 +89,12 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row centered>
         <Grid.Column style={{ maxWidth: 750 }}>
-          <PostFeed itemsPerRow={3} isProfile={true} posts={posts}/>
+         <PostFeed itemsPerRow={3} isProfile={true} posts={posts}/> 
+        
         </Grid.Column>
       </Grid.Row>
     </Grid>
   );
 }
+
+

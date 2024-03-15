@@ -1,12 +1,17 @@
 import { Card } from 'semantic-ui-react'
-import Post from '../PostCard/PostCard';
+import PostCard from '../PostCard/PostCard';
 
 
-export default function ProfilePostDisplay(props){
+export default function ProfilePostDisplay({isProfile, posts, itemsPerRow}){
+
+    const postCards = posts.map((post) => {
+        return (<PostCard key={post._id} post={post} isProfile={isProfile}/>)
+    })
 
     return (
-      
-       <div>Profile Post Display Container</div>
+      <Card.Group itemsPerRow={3}>
+       {postCards}
+       </Card.Group>
     
     )
 }
