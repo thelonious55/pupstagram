@@ -1,4 +1,4 @@
-# <center>  My Portfolio </center>
+# <center>  Pupstagram </center>
 
 Responsive full stack photo sharing application
 
